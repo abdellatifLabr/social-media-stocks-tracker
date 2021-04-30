@@ -1,6 +1,13 @@
+from sqlalchemy import (
+    Column,
+    DateTime,
+    ForeignKey,
+    Integer,
+    String,
+    Text,
+    create_engine,
+)
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Text, DateTime
-
 
 Base = declarative_base()
 
@@ -19,6 +26,7 @@ class Mention(Base):
   id = Column('id', Integer, primary_key=True)
   stock_id = Column(Integer, ForeignKey('stock.id'))
   message = Column(Text)
+  provider = Column(String(length=16))
   source = Column(Text)
   url = Column(Text)
   created_at = Column(DateTime)

@@ -1,6 +1,6 @@
-from contextlib import contextmanager
 import os
 import sys
+from contextlib import contextmanager
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -17,7 +17,6 @@ Session = sessionmaker(bind=db_engine)
 @contextmanager
 def db_session():
   session = Session()
-  print('created sessino')
   try:
     yield session
     session.commit()

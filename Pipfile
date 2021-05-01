@@ -8,6 +8,9 @@ psaw = "*"
 sqlalchemy = "*"
 
 [dev-packages]
+pylint = "*"
+isort = "*"
+autopep8 = "*"
 
 [requires]
 python_version = "3.8"

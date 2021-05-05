@@ -16,14 +16,18 @@ Session = sessionmaker(bind=db_engine)
 
 @contextmanager
 def db_session():
-  session = Session()
-  try:
-    yield session
+    session = Session()
+
+    for table in reversed(Base.metadata.sorted_tables):
+        session.execute(table.delete())
     session.commit()
-  except KeyboardInterrupt:
-    session.commit()
-  except Exception as error:
-    session.rollback()
-    raise error
-  finally:
-    session.close()
+    try:
+        yield session
+        session.commit()
+    except KeyboardInterrupt:
+        session.commit()
+    except Exception as error:
+        session.rollback()
+        raise error
+    finally:
+        session.close()

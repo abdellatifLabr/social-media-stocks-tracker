@@ -13,23 +13,23 @@ Base = declarative_base()
 
 
 class Stock(Base):
-  __tablename__ = 'stock'
-  id = Column('id', Integer, primary_key=True)
-  symbol = Column('symbol', String, unique=True)
+    __tablename__ = 'stock'
+    id = Column('id', Integer, primary_key=True)
+    symbol = Column('symbol', String, unique=True)
 
-  def __str__(self):
-    return self.symbol
+    def __str__(self):
+        return str(self.symbol)
 
 
 class Mention(Base):
-  __tablename__ = 'mention'
-  id = Column('id', Integer, primary_key=True)
-  stock_id = Column(Integer, ForeignKey('stock.id'))
-  message = Column(Text)
-  provider = Column(String(length=16))
-  source = Column(Text)
-  url = Column(Text)
-  created_at = Column(DateTime)
+    __tablename__ = 'mention'
+    id = Column('id', Integer, primary_key=True)
+    stock_id = Column(Integer, ForeignKey('stock.id'))
+    message = Column(Text)
+    provider = Column(String(length=16))
+    source = Column(Text)
+    url = Column(Text)
+    created_at = Column(DateTime)
 
-  def __str__(self):
-    return self.url
+    def __str__(self):
+        return str(self.url)

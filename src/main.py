@@ -13,6 +13,7 @@ parser.add_argument(
     '-p',
     '--provider',
     type=str,
+    choices=[provider.PROVIDER_NAME for provider in get_providers()],
     help='Social media website to fetch stocks mentions from'
 )
 parser.add_argument(

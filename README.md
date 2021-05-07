@@ -4,7 +4,10 @@ Social media stocks tracker
 # Install & Setup
 ```sh
 $ git clone https://github.com/abdellatifLabr/social-media-stocks-tracker
-$ ./scripts/install.sh
+$ cd social-media-stocks-tracker
+$ pip install pipenv
+$ pipenv shell --three
+$ pipenv install
 ```
 # Usage
 ```

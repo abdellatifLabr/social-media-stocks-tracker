@@ -1,5 +1,5 @@
 import re
 
 
-def extract_tickers(text):
-    return re.findall(r'([$][A-Za-z]{3})[\S]*', text)
+def extract_tickers(text, stock_symbol_length, *args, **kwargs):
+    return re.findall('([$][A-Za-z]{' + stock_symbol_length + '})[\S]*', text)

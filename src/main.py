@@ -34,6 +34,12 @@ parser.add_argument(
     default=0,
     help='Number of past minutes to fetch data from'
 )
+parser.add_argument(
+    '--stock-symbol-length',
+    type=str,
+    default='3,5',
+    help='Stock symbol length range'
+)
 
 for provider in get_providers():
     provider.add_args(parser)
@@ -65,7 +71,8 @@ with db_session() as db:
             last=timedelta(days=args.days, hours=args.hours,
                            minutes=args.minutes),
             **dict(args._get_kwargs())):
-        tickers = extract_tickers(submission['message'])
+        tickers = extract_tickers(
+            submission['message'], **dict(args._get_kwargs()))
         for ticker in tickers:
             stock = db.query(Stock).filter(
                 Stock.symbol.like(f'%{ticker}')).first()
